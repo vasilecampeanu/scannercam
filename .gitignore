@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+.vs
+.DS_Store
+bin
+obj
+Properties
