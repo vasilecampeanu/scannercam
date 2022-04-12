@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity
     public void onClickBtnOpenCamera(View view)
     {
         ImagePicker.with(this)
+            .saveDir(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "ImagePicker"))
             .cameraOnly()
             .crop()	    			                //Crop image(Optional), Check Customization for more option
             .compress(1024)			                //Final image size will be less than 1 MB(Optional)
