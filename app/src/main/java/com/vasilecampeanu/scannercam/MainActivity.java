@@ -1,5 +1,6 @@
 package com.vasilecampeanu.scannercam;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -10,10 +11,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
@@ -33,7 +36,9 @@ public class MainActivity extends AppCompatActivity
 
     private String[] titlesMain = new String[] { "Home", "Docs", "Tools", "Settings"};
 
-    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS= 7;
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 7;
+    
+    ImageView homeImageView;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity
         // TO DO: Aceasta functie trebuie apelata o singura data dupa ce aplicatia este intalata.
         // Recomandat ar fi ca utilizatorul sa poata alege daca vrea sa vada sau nu aplicatia la urmatoarea deschidere a aplicatiei.
          openWelcomePage();
+         
     }
 
     public void onClickBtnOpenCamera(View view)
@@ -60,6 +66,15 @@ public class MainActivity extends AppCompatActivity
             .compress(1024)			                //Final image size will be less than 1 MB(Optional)
             .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
             .start();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) 
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        homeImageView = (ImageView)findViewById(R.id.homeImageView);
+        Uri uri = data.getData();
+        homeImageView.setImageURI(uri);
     }
     
     private void checkAndroidVersion()
