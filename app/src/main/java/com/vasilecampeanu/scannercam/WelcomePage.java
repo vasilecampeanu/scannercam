@@ -1,9 +1,6 @@
 package com.vasilecampeanu.scannercam;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -14,11 +11,9 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class WelcomePage extends AppCompatActivity 
 {
-
     private TabLayout  tabLayout;
     private ViewPager2 viewPager;
-    
-    VPAdapter vpAdapter;
+    private WelcomeVPAdapter welcomeVpAdapter;
 
     private String[] titles = new String[] { "WPAGE01", "WPAGE02", "WPAGE03" };
     
@@ -36,8 +31,8 @@ public class WelcomePage extends AppCompatActivity
         tabLayout = findViewById(R.id.welcomeTabLayout);
         viewPager = findViewById(R.id.welcomeViewPager);
 
-        vpAdapter = new VPAdapter(this);
-        viewPager.setAdapter(vpAdapter);
+        welcomeVpAdapter = new WelcomeVPAdapter(this);
+        viewPager.setAdapter(welcomeVpAdapter);
         
         new TabLayoutMediator(tabLayout, viewPager, ((tab, position) -> tab.setText(titles[position]))).attach();
     }

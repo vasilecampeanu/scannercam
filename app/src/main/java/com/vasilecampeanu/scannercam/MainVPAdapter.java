@@ -10,11 +10,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import java.util.ArrayList;
 
-public class VPAdapter extends FragmentStateAdapter {
+public class MainVPAdapter extends FragmentStateAdapter {
 
-    private String[] titles = new String[] { "WPAGE01", "WPAGE02", "WPAGE03" };
-    
-    public VPAdapter(@NonNull FragmentActivity fragmentActivity) {
+    private String[] titlesMain = new String[] { "Home", "Docs", "Tools", "Settings"};
+
+    public MainVPAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 
@@ -24,18 +24,20 @@ public class VPAdapter extends FragmentStateAdapter {
         switch (position)
         {
             case 0:
-                return new WPAGE01();
+                return new Home();
             case 1:
-                return new WPAGE02();
+                return new Docs();
             case 2:
-                return new WPAGE03();
+                return new Tools();
+            case 3:
+                return new Settings();
         }
-        
+
         return new WPAGE01();
     }
 
     @Override
     public int getItemCount() {
-        return titles.length;
+        return titlesMain.length;
     }
 }
