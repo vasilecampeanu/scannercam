@@ -13,8 +13,10 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -48,10 +50,18 @@ public class MainActivity extends AppCompatActivity
         // TO DO: Aceasta functie trebuie apelata o singura data dupa ce aplicatia este intalata.
         // Recomandat ar fi ca utilizatorul sa poata alege daca vrea sa vada sau nu aplicatia la urmatoarea deschidere a aplicatiei.
          openWelcomePage();
-    
-        // Ask permsions
     }
 
+    public void onClickBtnOpenCamera(View view)
+    {
+        ImagePicker.with(this)
+            .cameraOnly()
+            .crop()	    			                //Crop image(Optional), Check Customization for more option
+            .compress(1024)			                //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+            .start();
+    }
+    
     private void checkAndroidVersion()
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
